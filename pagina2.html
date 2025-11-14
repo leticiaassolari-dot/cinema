@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineNews - Séries</title>
+  <link rel="stylesheet" href="pagina2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <div class="container-menu">
+      <div class="logo"> CineNews</div>
+      <nav class="menu-links">
+        <a href="index.html">Home</a>
+        <a href="pagina.html">Filmes</a>
+        <a href="pagina2.html" class="ativo">Séries</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Carrossel de destaque -->
+  <section class="carrossel-container">
+    <div class="carrossel">
+      <img src="stranger.jpg" class="ativo" alt="Stranger Things">
+      <img src="pat.jpg" alt="The Last of Us">
+      <img src="deits.jpg" alt="Wandinha">
+      <img src="hhooo.jpg" alt="House of the Dragon">
+    </div>
+    <button id="prev">◀</button>
+    <button id="next">▶</button>
+  </section>
+
+  <main class="galeria-container">
+    <h2> Séries em Destaque</h2>
+
+    <div class="grade-series">
+      <div class="serie-card" onclick="abrirModal('stranger')">
+        <img src="stranger.jpg" alt="Stranger Things">
+        <h3>Stranger Things</h3>
+        <p>Um grupo de amigos enfrenta forças sobrenaturais em uma pequena cidade.</p>
+      </div>
+
+      <div class="serie-card" onclick="abrirModal('thelastofus')">
+        <img src="the last.jpg" alt="The Last of Us">
+        <h3>The Last of Us</h3>
+        <p>Joel e Ellie lutam para sobreviver em um mundo pós-apocalíptico.</p>
+      </div>
+
+      <div class="serie-card" onclick="abrirModal('wandinha')">
+        <img src="wa.jpg" alt="Wandinha">
+        <h3>Wandinha</h3>
+        <p>A filha dos Addams investiga mistérios em sua escola peculiar.</p>
+      </div>
+
+      <div class="serie-card" onclick="abrirModal('house')">
+        <img src="house.jpg" alt="House of the Dragon">
+        <h3>House of the Dragon</h3>
+        <p>Os Targaryen lutam pelo trono de ferro em Westeros.</p>
+      </div>
+
+      <div class="serie-card" onclick="abrirModal('peaky')">
+        <img src="pea.jpg" alt="Peaky Blinders">
+        <h3>Peaky Blinders</h3>
+        <p>Uma gangue britânica comanda Birmingham após a Primeira Guerra Mundial.</p>
+      </div>
+
+      <div class="serie-card" onclick="abrirModal('breakingbad')">
+        <img src="bre.jpg" alt="Breaking Bad">
+        <h3>Breaking Bad</h3>
+        <p>Um professor de química se transforma em um poderoso traficante.</p>
+      </div>
+
+      <div class="serie-card" onclick="abrirModal('got')">
+        <img src="game.jpg" alt="Game of Thrones">
+        <h3>Game of Thrones</h3>
+        <p>Famílias poderosas disputam o controle do Trono de Ferro.</p>
+      </div>
+
+      <div class="serie-card" onclick="abrirModal('loki')">
+        <img src="loki.jpg" alt="Loki">
+        <h3>Loki</h3>
+        <p>O deus da trapaça enfrenta o caos do multiverso.</p>
+      </div>
+
+      <div class="serie-card" onclick="abrirModal('mandalorian')">
+        <img src="man.jpg" alt="The Mandalorian">
+        <h3>The Mandalorian</h3>
+        <p>Um caçador de recompensas viaja pela galáxia com Grogu.</p>
+      </div>
+
+      <div class="serie-card" onclick="abrirModal('visaoescarlate')">
+        <img src="wanda visu.jpg" alt="WandaVision">
+        <h3>WandaVision</h3>
+        <p>Wanda cria uma realidade alternativa para viver com Visão.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal dos trailers -->
+  <div id="modalTrailer" class="modal">
+    <div class="modal-conteudo">
+      <span class="fechar" onclick="fecharModal()">&times;</span>
+      <iframe id="videoTrailer" width="100%" height="400" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <footer class="rodape-container">
+    <p>© 2025 CineNews - Desenvolvido por 1DTA - 2º EM</p>
+  </footer>
+
+  <script src="script-pagina2.js"></script>
+</body>
+</html>

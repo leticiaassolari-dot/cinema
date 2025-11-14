@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineNews - Filmes</title>
+  <link rel="stylesheet" href="pagina.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <div class="container-menu">
+      <div class="logo">🎬 CineNews</div>
+      <nav class="menu-links">
+        <a href="index.html">Home</a>
+        <a href="pagina1.html" class="ativo">Filmes</a>
+        <a href="pagina2.html">Séries</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Carrossel de destaque -->
+  <section class="carrossel-container">
+    <div class="carrossel">
+      <img src="ddd.jpg"class="ativo" alt="Duna 2">
+      <img src="ink.jpg" alt="Oppenheimer">
+      <img src="batman.jpg" alt="Barbie">
+      <img src="wd.webp" alt="Avatar 2">
+    </div>
+    <button id="prev">◀</button>
+    <button id="next">▶</button>
+  </section>
+
+  <main class="galeria-container">
+    <h2> Filmes em Destaque</h2>
+
+    <div class="grade-filmes">
+      <!-- Exemplo de um filme -->
+      <div class="filme-card" onclick="abrirModal('duna2')">
+        <img src="df.jpg" alt="Duna 2">
+        <h3>Duna: Parte 2</h3>
+        <p>Paul Atreides busca vingança contra os traidores de sua família.</p>
+      </div>
+
+      <div class="filme-card" onclick="abrirModal('oppenheimer')">
+        <img src="op.jpg" alt="Oppenheimer">
+        <h3>Oppenheimer</h3>
+        <p>A vida e os dilemas morais do criador da bomba atômica.</p>
+      </div>
+
+      <div class="filme-card" onclick="abrirModal('barbie')">
+        <img src="bar.jpg" alt="Barbie">
+        <h3>Barbie</h3>
+        <p>Uma boneca em crise existencial embarca em uma aventura no mundo real.</p>
+      </div>
+
+      <div class="filme-card" onclick="abrirModal('avatar2')">
+        <img src="av.jpg" alt="Avatar 2">
+        <h3>Avatar: O Caminho da Água</h3>
+        <p>Jake Sully e Neytiri enfrentam novos desafios em Pandora.</p>
+      </div>
+
+      <!-- MAIS FILMES -->
+      <div class="filme-card" onclick="abrirModal('batman')">
+        <img src="bat.jpg" alt="The Batman">
+        <h3>The Batman</h3>
+        <p>Bruce Wayne enfrenta o Charada em uma sombria Gotham.</p>
+      </div>
+
+      <div class="filme-card" onclick="abrirModal('supermario')">
+        <img src="sp.jpg" alt="Super Mario Bros">
+        <h3>Super Mario Bros</h3>
+        <p>O encanador mais famoso do mundo embarca em uma jornada épica.</p>
+      </div>
+
+      <div class="filme-card" onclick="abrirModal('johnwick')">
+        <img src="john.jpg" alt="John Wick 4">
+        <h3>John Wick 4</h3>
+        <p>O lendário assassino enfrenta novos inimigos no submundo.</p>
+      </div>
+
+      <div class="filme-card" onclick="abrirModal('guardioes')">
+        <img src="gv.jpg" alt="Guardiões da Galáxia Vol.3">
+        <h3>Guardiões da Galáxia Vol.3</h3>
+        <p>O grupo enfrenta seu passado e luta para proteger Rocket.</p>
+      </div>
+
+      <div class="filme-card" onclick="abrirModal('homemaranha')">
+        <img src="sem volta.jpg" alt="Homem-Aranha">
+        <h3>Homem-Aranha: Sem Volta Para Casa</h3>
+        <p>Peter Parker enfrenta vilões de universos diferentes.</p>
+      </div>
+
+      <div class="filme-card" onclick="abrirModal('interestelar')">
+        <img src="in.jpg" alt="Interestelar">
+        <h3>Interestelar</h3>
+        <p>Exploradores viajam além das estrelas para salvar a humanidade.</p>
+      </div>
+
+      <!-- Continue adicionando até 20 -->
+    </div>
+  </main>
+
+  <!-- Modais dos trailers -->
+  <div id="modalTrailer" class="modal">
+    <div class="modal-conteudo">
+      <span class="fechar" onclick="fecharModal()">&times;</span>
+      <iframe id="videoTrailer" width="100%" height="400" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <footer class="rodape-container">
+    <p>© 2025 CineNews - Desenvolvido por 1DTA - 2º EM</p>
+  </footer>
+
+  <script src="script-filme.js"></script>
+</body>
+</html>

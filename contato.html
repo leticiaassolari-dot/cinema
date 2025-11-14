@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contato - CineNews</title>
+  <link rel="stylesheet" href="contato.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container-menu">
+      <div class="logo"> CineNews</div>
+      <nav class="menu-links">
+        <a href="index.html">Home</a>
+        <a href="pagina.html">Filmes</a>
+        <a href="pagina2.html">Séries</a>
+        <a href="contato.html" class="ativo">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container-contato">
+
+    <section class="fale-conosco">
+      <h1> Fale com o CineNews</h1>
+      <p>Tem alguma dúvida, sugestão ou quer compartilhar sua opinião sobre filmes e séries? Entre em contato conosco!</p>
+      <div class="info-contato">
+        <span><i class="fas fa-phone-alt"></i> (18) 99734-4431</span>
+        <span><i class="fas fa-envelope"></i> contato@cinenews.com.br</span>
+        <span><i class="fas fa-map-marker-alt"></i> Assis - SP, Brasil</span>
+      </div>
+    </section>
+
+    <section class="formulario-container">
+      <h2>Envie sua mensagem</h2>
+      <form>
+        <div class="input-group">
+          <label for="nome">Nome*</label>
+          <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+        </div>
+
+        <div class="input-group">
+          <label for="email">E-mail*</label>
+          <input type="email" id="email" placeholder="Digite seu e-mail" required>
+        </div>
+
+        <div class="input-group">
+          <label for="assunto">Assunto*</label>
+          <input type="text" id="assunto" placeholder="Ex: Sugestão de matéria, parceria, crítica..." required>
+        </div>
+
+        <div class="input-group">
+          <label for="mensagem">Mensagem*</label>
+          <textarea id="mensagem" placeholder="Digite sua mensagem..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar"> Enviar mensagem</button>
+      </form>
+    </section>
+
+    <section class="newsletter-container">
+      <h2>📩 Assine nossa Newsletter</h2>
+      <p>Receba as últimas notícias sobre cinema, séries e eventos diretamente no seu e-mail.</p>
+      <form class="form-newsletter">
+        <input type="email" placeholder="Digite seu e-mail" required>
+        <button type="submit" class="btn-cadastrar">Cadastrar</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="rodape-container">
+    <p>© 2025 CineNews — Desenvolvido por 1DTA - 2º EM.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineNews - Home</title>
+
+  <!-- ===== CSS inline (tema vinho/vermelho, menu fixo, carrossel, modal, grid) ===== -->
+  <style>
+    :root {
+      --vinho-escuro: #3b0a0a;
+      --vinho-medio: #6a1111;
+      --vinho-brilho: #c31b1b;
+      --vinho-claro: #d84545;
+      --bg: #faf5f5;
+      --offwhite: #fff9f9;
+      --text: #222;
+      --footer-text: #f4dcdc;
+    }
+
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding-top: 72px;
+      /* espaço para o header sticky */
+    }
+
+    /* ===== Header / menu ===== */
+    header {
+      background-color: var(--vinho-escuro);
+      padding: 14px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .container-menu {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      color: #fff;
+    }
+
+    .logo {
+      font-weight: 800;
+      color: var(--vinho-claro);
+      font-size: 1.25rem
+    }
+
+    .menu-links {
+      display: flex;
+      gap: 18px;
+      align-items: center
+    }
+
+    .menu-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      padding-bottom: 4px;
+      transition: all .18s ease;
+    }
+
+    .menu-links a:hover {
+      color: var(--vinho-brilho);
+      border-bottom: 2px solid var(--vinho-brilho)
+    }
+
+    .menu-links a.ativo {
+      color: var(--vinho-brilho);
+      border-bottom: 2px solid var(--vinho-brilho)
+    }
+
+    /* ===== Carrossel (mantive suas classes originais) ===== */
+    .carrossel-container {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      height: 380px;
+      margin: 20px auto;
+      overflow: hidden;
+      background: linear-gradient(180deg, #fff, #fff0);
+      border-radius: 8px;
+      border: 4px solid rgba(107, 15, 15, 0.12);
+    }
+
+    .carrossel img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: none;
+      visibility: hidden;
+    }
+
+    .carrossel img.ativo {
+      display: block;
+      visibility: visible
+    }
+
+    button#anterior,
+    button#proximo {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(59, 10, 10, 0.85);
+      color: #fff;
+      border: none;
+      font-size: 22px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background .18s, transform .12s;
+    }
+
+    button#anterior:hover,
+    button#proximo:hover {
+      background: var(--vinho-brilho)
+    }
+
+    #anterior {
+      left: 12px
+    }
+
+    #proximo {
+      right: 12px
+    }
+
+    /* ===== Conteúdo principal - mantendo estrutura (container-conteudo, linha-conteudo, etc.) ===== */
+    .container-conteudo {
+      max-width: 1100px;
+      margin: 20px auto;
+      background: var(--offwhite);
+      padding: 18px;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06)
+    }
+
+    .linha-conteudo {
+      display: flex;
+      gap: 20px;
+      border-bottom: 1px solid #e9e1e1;
+      padding-bottom: 20px;
+      margin-bottom: 18px;
+      flex-wrap: wrap
+    }
+
+    .artigo-principal {
+      flex: 2;
+      min-width: 260px
+    }
+
+    .coluna-lateral {
+      flex: 1;
+      min-width: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .artigo-principal h2 {
+      color: var(--vinho-medio);
+      margin-bottom: 10px
+    }
+
+    .artigo-principal p {
+      line-height: 1.6
+    }
+
+    .artigo-secundario {
+      background: #fff;
+      padding: 12px;
+      border-radius: 6px;
+      border-left: 4px solid var(--vinho-brilho)
+    }
+
+    .artigo-secundario h4 {
+      color: var(--vinho-medio);
+      margin-bottom: 6px
+    }
+
+    .artigo-secundario p {
+      color: #555;
+      font-size: 0.95rem
+    }
+
+    .com-imagem {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start
+    }
+
+    .imgsecundaria {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #eee
+    }
+
+    .linha-conteudo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 10px
+    }
+
+    .artigo-grid {
+      background: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid rgba(107, 15, 15, 0.06)
+    }
+
+    .artigo-grid img.imgpequena {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 8px
+    }
+
+    .artigo-grid h5 {
+      color: var(--vinho-medio);
+      margin-bottom: 6px
+    }
+
+    .artigo-grid p {
+      color: #666;
+      font-size: 0.95rem
+    }
+
+    /* destaque grande */
+    .imagdestaque {
+      width: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 12px
+    }
+
+    /* botão de ver trailer no artigo */
+    .btn-trailer {
+      display: inline-block;
+      margin-top: 10px;
+      background: linear-gradient(90deg, var(--vinho-brilho), var(--vinho-medio));
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .btn-trailer:hover {
+      opacity: .95;
+      transform: translateY(-2px)
+    }
+
+    /* ===== Footer ===== */
+    .rodape-container {
+      margin-top: 18px
+    }
+
+    .rodape-superior {
+      background: var(--vinho-escuro);
+      padding: 30px 0;
+      color: #f6d2d2
+    }
+
+    .container-rodape {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 16px;
+      flex-wrap: wrap
+    }
+
+    .coluna-rodape {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .coluna-rodape h4 {
+      color: var(--vinho-claro)
+    }
+
+    .coluna-rodape a {
+      color: #f3d3d3;
+      text-decoration: none;
+      font-size: 0.95rem
+    }
+
+    .coluna-rodape a:hover {
+      color: var(--vinho-brilho) text-decoration underline
+    }
+
+    .rodape-inferior {
+      background: var(--vinho-escuro);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 14px 10px;
+      font-size: 0.9rem
+    }
+
+    /* ===== Modal (trailers) ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px
+    }
+
+    .modal.active {
+      display: flex
+    }
+
+    .modal-conteudo {
+      width: 100%;
+      max-width: 920px;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .modal-conteudo iframe {
+      width: 100%;
+      height: 520px;
+      display: block;
+      border: 0
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--vinho-brilho);
+      border: none;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer
+    }
+
+    /* ===== Responsividade ===== */
+    @media (max-width:900px) {
+      .carrossel-container {
+        height: 260px
+      }
+
+      .carrossel img {
+        height: 260px
+      }
+
+      .modal-conteudo iframe {
+        height: 320px
+      }
+
+      .imgsecundaria {
+        width: 100px;
+        height: 70px
+      }
+
+      .linha-conteudo {
+        flex-direction: column
+      }
+
+      body {
+        padding-top: 72px
+      }
+    }
+
+    @media (max-width:520px) {
+      .menu-links {
+        gap: 10px;
+        font-size: 0.95rem
+      }
+
+      .container-conteudo {
+        margin: 12px;
+        padding: 12px
+      }
+
+      .linha-conteudo-grid {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container-menu">
+      <div class="logo"> CineNews</div>
+      <nav class="menu-links">
+        <a href="index.html" class="ativo">Home</a>
+        <a href="pagina.html">Filmes</a>
+        <a href="pagina2.html">Séries</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CARROSSEL (mantive sua estrutura original) -->
+  <section class="carrossel-container">
+    <div class="carrossel">
+      <img src="como eu.jpg" class="slide ativo" alt="Como eu era Antes de Você" />
+      <img src="ink.jpg" class="slide" alt="Wicked" />
+      <img src="batman.jpg" class="slide" alt="The Batman" />
+      <img src="wd.webp" class="slide" alt="Barbie" />
+      <img src="ddd.jpg" class="slide" alt="Duna: Parte 2" />
+      <img src="bad.avif" class="slide" alt="Lançamento" />
+    </div>
+
+    <button id="anterior">◀</button>
+    <button id="proximo">▶</button>
+  </section>
+
+  <!-- CONTEÚDO PRINCIPAL - BLOCOS  -->
+  <main class="container-conteudo">
+    <div class="linha-conteudo">
+      <div class="artigo-principal">
+        <h2>“Duna: Parte 2” — visual épico e trilha avassaladora</h2>
+        <p>Denis Villeneuve retorna com uma continuação grandiosa que aprofunda as intrigas políticas de Arrakis e
+          apresenta cenas de batalha cinematográficas impressionantes. Confira a crítica, o trailer e curiosidades sobre
+          a produção.</p>
+        <a class="btn-trailer" data-trailer="modal-duna">Ver trailer</a>
+        <p style="margin-top:12px;color:#666">7 MIN LEITURA</p>
+      </div>
+
+      <div class="coluna-lateral">
+        <div class="artigo-secundario">
+          <h4>“Coringa: Folie à Deux” — análise</h4>
+          <p>Lady Gaga e Joaquin Phoenix entregam uma combinação explosiva entre drama e musical que já divide opiniões
+            entre críticos.</p>
+          <a class="btn-trailer" data-trailer="modal-coringa" style="display:inline-block; margin-top:8px">Ver
+            trailer</a>
+        </div>
+
+        <div class="artigo-secundario com-imagem">
+          <img class="imgsecundaria" src="jk.jpg" alt="Coringa">
+          <div>
+            <h4>Entrevista com compositores</h4>
+            <p>Como a trilha sonora vem moldando as emoções na nova safra de blockbusters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="linha-conteudo-grid">
+      <div class="artigo-grid">
+        <img class="imgpequena" src="hm.jpg"
+          alt="Homem-Aranha">
+        <h5>Homem-Aranha: Através do Aranhaverso — multiverso em expansão</h5>
+        <p>Uma animação que transcende o gênero e conquista público e crítica. <strong>4 MIN LEITURA</strong></p>
+        <a class="btn-trailer" data-trailer="modal-spider">Ver trailer</a>
+      </div>
+
+      <div class="artigo-grid">
+        <img class="imgpequena" src="bate.jpg" alt="The Batman">
+        <h5>The Batman — novo visual sombrio</h5>
+        <p>Robert Pattinson encara o papel com um tom mais noir e investigativo. <strong>5 MIN LEITURA</strong></p>
+        <a class="btn-trailer" data-trailer="modal-batman">Ver trailer</a>
+      </div>
+
+      <div class="artigo-grid">
+        <img class="imgpequena" src="openn.jpg" alt="Oppenheimer">
+        <h5>Oppenheimer — o épico histórico de Nolan</h5>
+        <p>Um drama biográfico que explorou a ciência e a moralidade de uma era. <strong>9 MIN LEITURA</strong></p>
+        <a class="btn-trailer" data-trailer="modal-oppen">Ver trailer</a>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- SEGUNDO BLOCÃO (mantive sua segunda main) -->
+  <main class="container-conteudo">
+    <div class="linha-conteudo">
+      <div class="artigo-principal">
+        <img class="imagdestaque" src="martin.jpg" alt="Duna 2">
+        <h3>Entrevista exclusiva</h3>
+        <h2>Martin Scorsese comenta o futuro do cinema</h2>
+        <p>O aclamado diretor debate os efeitos do streaming na sétima arte e defende a importância da tela grande para
+          a experiência coletiva do público. <strong>8 MIN LEITURA</strong></p>
+        <a class="btn-trailer" data-trailer="modal-scorsese">Ver entrevista (trecho)</a>
+      </div>
+
+      <div class="coluna-lateral">
+        <div class="artigo-secundario">
+          <h4>Crítica: “Inside Out 2” emociona</h4>
+          <p>A Pixar atinge um equilíbrio entre humor e sensibilidade nesta sequência. <strong>5 MIN LEITURA</strong>
+          </p>
+          <a class="btn-trailer" data-trailer="modal-inside">Ver trailer</a>
+        </div>
+
+        <div class="artigo-secundario com-imagem">
+          <img class="imgsecundaria" src="diver.jpg"
+            alt="Inside Out 2">
+          <div>
+            <h4>Box office</h4>
+            <p>Arrecadações da última semana — quem subiu, quem caiu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="linha-conteudo-grid">
+      <div class="artigo-grid">
+        <img class="imgpequena" src="o c.jpg" alt="Avatar 2">
+        <h5>Avatar 2 — tecnologias usadas</h5>
+        <p>Os bastidores do processo que levou Pandora a ganhar vida novamente. <strong>6 MIN LEITURA</strong></p>
+        <a class="btn-trailer" data-trailer="modal-avatar">Ver trailer</a>
+      </div>
+
+      <div class="artigo-grid">
+        <img class="imgpequena" src="bar.jpg" alt="Barbie">
+        <h5>Barbie — fenômeno pop</h5>
+        <p>Análise do impacto cultural e da estética do filme. <strong>5 MIN LEITURA</strong></p>
+        <a class="btn-trailer" data-trailer="modal-barbie">Ver trailer</a>
+      </div>
+
+      <div class="artigo-grid">
+        <img class="imgpequena" src="tty.jpg" alt="Duna 2">
+        <h5>Duna 2 — trilha sonora</h5>
+        <p>Hans Zimmer retorna com arranjos que ampliam a imersão no universo de Arrakis. <strong>4 MIN LEITURA</strong>
+        </p>
+        <a class="btn-trailer" data-trailer="modal-duna">Ouça trecho</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="rodape-container">
+    <div class="rodape-superior">
+      <div class="container-rodape">
+        <div class="coluna-rodape">
+          <h4>Filmes</h4>
+          <a href="pagina.html">Em Cartaz</a>
+          <a href="pagina.html">Estreias da Semana</a>
+          <a href="pagina.html">Clássicos</a>
+        </div>
+        <div class="coluna-rodape">
+          <h4>Críticas</h4>
+          <a href="#">Avaliados</a>
+          <a href="#">Colunas</a>
+          <a href="#">Top 10</a>
+        </div>
+        <div class="coluna-rodape">
+          <h4>Séries</h4>
+          <a href="pagina2.html">Netflix</a>
+          <a href="pagina2.html">HBO</a>
+          <a href="pagina2.html">Disney+</a>
+        </div>
+        <div class="coluna-rodape">
+          <h4>Plataformas</h4>
+          <a href="https://www.netflix.com/br/" target="_blank">Netflix</a>
+          <a href="https://www.disneyplus.com/pt-br" target="_blank">Disney+</a>
+          <a href="https://www.hbomax.com/br/pt" target="_blank">HBO Max</a>
+          <a href="https://www.primevideo.com/" target="_blank">Prime Video</a>
+        </div>
+        <div class="coluna-rodape   coluna-rodape-direita">
+           <h4>Suporte</h4>
+          <a href="#">Quem somos</a>
+          <a href="#">Fale conosco</a>
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Anuncie</a>
+        </div>
+      </div>
+    </div>
+    <div class="rodape-inferior">
+      <p>© 1996 - 2025. Todos direitos reservados a CineNews. Este material não pode ser publicado, transmitido ou
+        redistribuído sem autorização.</p>
+    </div>
+  </footer>
+
+  <!-- ===== MODAIS DE TRAILERS (um modal por trailer, id ligado ao data-trailer) ===== -->
+  <div class="modal" id="modal-duna" aria-hidden="true">
+    <div class="modal-conteudo">
+      <button class="modal-close" data-close>&times;</button>
+      <iframe src="https://www.youtube.com/embed/U2Qp5pL3ovA"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-coringa" aria-hidden="true">
+    <div class="modal-conteudo">
+      <button class="modal-close" data-close>&times;</button>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/sHG2sAi2R-s?si=qUUCe8bXC0jy3SUp"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-spider" aria-hidden="true">
+    <div class="modal-conteudo">
+      <button class="modal-close" data-close>&times;</button>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/_4is7I_ZxTg?si=T_43hNxfIwurp3DS"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-batman" aria-hidden="true">
+    <div class="modal-conteudo">
+      <button class="modal-close" data-close>&times;</button>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/mqqft2x_Aa4?si=Dq1nY5ly2BcjUWUU"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    </div>
+    <div class="modal" id="modal-oppen" aria-hidden="true">
+      <div class="modal-conteudo">
+        <button class="modal-oppen" data-close>&times;</button>
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/bK6ldnjE3Y0?si=LE6mc_KTMe5J0PUa&amp;controls=0"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-scorsese" aria-hidden="true">
+      <div class="modal-conteudo">
+        <button class="modal-close" data-close>&times;</button>
+        <!-- exemplo: trecho de entrevista no YouTube -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/NGF7JOn5KaA?si=u3FtFRYTYoLWlxL2&amp;start=2"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-inside" aria-hidden="true">
+      <div class="modal-conteudo">
+        <button class="modal-close" data-close>&times;</button>
+       <iframe width="560" height="315" src="https://www.youtube.com/embed/yAZxx8t9zig?si=jaP_KMnVlJif65Zw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-avatar" aria-hidden="true">
+      <div class="modal-conteudo">
+        <button class="modal-close" data-close>&times;</button>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/qoIBHnygdDk?si=9dhoRWzjscRxFLvU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-barbie" aria-hidden="true">
+      <div class="modal-conteudo">
+        <button class="modal-close" data-close>&times;</button>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/gB2wsXielz4?si=RlQD2OUFlnSMA_C5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- ===== JS (carrossel original mantido + lógica de modais) ===== -->
+    <script>
+      // ---------- CARROSSEL (mantive sua lógica, mas fiz robusta) ----------
+      (function () {
+        const slides = document.querySelectorAll('.carrossel .slide');
+        const btnProximo = document.getElementById('proximo');
+        const btnAnterior = document.getElementById('anterior');
+        let slideAtual = 0;
+
+        function mostrarSlide(index) {
+          slides.forEach((slide, i) => {
+            slide.style.display = 'none';
+            slide.style.visibility = 'hidden';
+            slide.classList.remove('ativo');
+            if (i === index) {
+              slide.style.display = 'block';
+              slide.style.visibility = 'visible';
+              slide.classList.add('ativo');
+            }
+          });
+        }
+
+        btnProximo.addEventListener('click', () => {
+          slideAtual = (slideAtual + 1) % slides.length;
+          mostrarSlide(slideAtual);
+        });
+
+        btnAnterior.addEventListener('click', () => {
+          slideAtual = (slideAtual - 1 + slides.length) % slides.length;
+          mostrarSlide(slideAtual);
+        });
+
+        // auto-advance opcional (comentado; descomente se quiser autoplay)
+        // setInterval(()=> { slideAtual = (slideAtual + 1) % slides.length; mostrarSlide(slideAtual); }, 7000);
+
+        // exibir primeiro slide
+        mostrarSlide(slideAtual);
+      })();
+
+      // ---------- MODAIS DE TRAILER ----------
+      (function () {
+        // abrir modal associado ao atributo data-trailer
+        document.querySelectorAll('[data-trailer]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-trailer');
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            // mostrar modal
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            // iniciar o vídeo (iframe já tem src estático). Para autoplay, adicionamos &autoplay=1 à src quando abrir:
+            const iframe = modal.querySelector('iframe');
+            if (iframe && iframe.dataset.srcAutoplay !== 'true') {
+              // se ainda não tem autoplay ativado, adiciona
+              iframe.dataset.origSrc = iframe.src;
+              // tenta adicionar parâmetro autoplay=1 (se já tiver params, concatena)
+              if (iframe.src.indexOf('?') === -1) iframe.src = iframe.src + '?autoplay=1';
+              else if (iframe.src.indexOf('autoplay=1') === -1) iframe.src = iframe.src + '&autoplay=1';
+              iframe.dataset.srcAutoplay = 'true';
+            }
+          });
+        });
+
+        // fechar ao clicar no botão X
+        document.querySelectorAll('.modal-close').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const modal = btn.closest('.modal');
+            fecharModal(modal);
+          });
+        });
+
+        // fechar clicando fora do conteúdo
+        window.addEventListener('click', (e) => {
+          document.querySelectorAll('.modal.active').forEach(modal => {
+            if (e.target === modal) fecharModal(modal);
+          });
+        });
+
+        // fechar com ESC
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            document.querySelectorAll('.modal.active').forEach(modal => fecharModal(modal));
+          }
+        });
+
+        function fecharModal(modal) {
+          if (!modal) return;
+          const iframe = modal.querySelector('iframe');
+          // remover autoplay e pausar (reset src)
+          if (iframe) {
+            // limpa src para parar o vídeo
+            iframe.src = iframe.dataset.origSrc || '';
+            // restaura src original sem autoplay para próxima abertura
+            if (iframe.dataset.origSrc) iframe.src = iframe.dataset.origSrc;
+            iframe.removeAttribute('data-src-autoplay');
+            iframe.dataset.srcAutoplay = 'false';
+          }
+          modal.classList.remove('active');
+          modal.setAttribute('aria-hidden', 'true');
+        }
+      })();
+
+      // melhoria: links do menu mantêm class ativo dependendo do arquivo (simples matching)
+      (function () {
+        const links = document.querySelectorAll('.menu-links a');
+        const current = location.pathname.split('/').pop() || 'index.html';
+        links.forEach(a => {
+          const href = a.getAttribute('href');
+          if (href === current) {
+            a.classList.add('ativo');
+          } else {
+            a.classList.remove('ativo');
+          }
+        });
+      })();
+    </script>
+
+</body>
+
+</html>

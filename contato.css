@@ -1,0 +1,187 @@
+:root {
+  --vinho-escuro: #4a0b0b;
+  --vinho-medio: #7a0f0f;
+  --vinho-brilho: #c31b1b;
+  --vinho-acao: #9b1d1d;
+  --fundo-claro: #faf2f2;
+  --offwhite: #fff9f9;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--fundo-claro);
+  color: #222;
+}
+
+/* HEADER */
+header {
+  background: var(--vinho-escuro);
+  padding: 18px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.container-menu {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  color: var(--vinho-brilho);
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+.menu-links a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 16px;
+  font-weight: 600;
+}
+.menu-links a:hover,
+.menu-links a.ativo {
+  color: var(--vinho-brilho);
+}
+
+/* CONTEÚDO PRINCIPAL */
+.container-contato {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Fale Conosco */
+.fale-conosco {
+  background: var(--offwhite);
+  border-left: 5px solid var(--vinho-medio);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+.fale-conosco h1 {
+  color: var(--vinho-medio);
+  margin-bottom: 10px;
+}
+.fale-conosco p {
+  color: #444;
+  margin-bottom: 15px;
+}
+.info-contato span {
+  display: block;
+  color: #333;
+  margin: 6px 0;
+}
+.info-contato i {
+  color: var(--vinho-brilho);
+  margin-right: 10px;
+}
+
+/* Formulário */
+.formulario-container {
+  background: var(--offwhite);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(122,15,15,0.15);
+}
+.formulario-container h2 {
+  color: var(--vinho-medio);
+  margin-bottom: 20px;
+}
+.input-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--vinho-escuro);
+}
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid rgba(122,15,15,0.2);
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  font-size: 1em;
+}
+input:focus,
+textarea:focus {
+  border-color: var(--vinho-brilho);
+  outline: none;
+}
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+/* Botão */
+.btn-enviar {
+  background: var(--vinho-brilho);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.btn-enviar:hover {
+  background: var(--vinho-acao);
+}
+
+/* Newsletter */
+.newsletter-container {
+  background: #fff;
+  border: 2px solid rgba(122,15,15,0.12);
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  margin-top: 30px;
+}
+.newsletter-container h2 {
+  color: var(--vinho-medio);
+  margin-bottom: 10px;
+}
+.form-newsletter {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.form-newsletter input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid rgba(122,15,15,0.2);
+  border-radius: 8px;
+}
+.btn-cadastrar {
+  background: var(--vinho-brilho);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-cadastrar:hover {
+  background: var(--vinho-acao);
+}
+
+/* Rodapé */
+footer {
+  background: var(--vinho-escuro);
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
